@@ -25,19 +25,19 @@ Round 1:
 5. Track the car from the arrival to the ferry.
    The application must display the name of the last location visited (crossroads don't count).
 
-        A
-        |
-    G - 1 - S
-    |   |
-    C - 2 - L
-
-A - Arrival
-G - Gas station
-1 - crossroad 1
-S - Small ferry
-C - Customs inspection
-2 - crossroad 2
-L - Large ferry
+            A
+            |
+        G - 1 - S
+        |   |
+        C - 2 - L
+    
+        A - Arrival
+        G - Gas station
+        1 - crossroad 1
+        S - Small ferry
+        C - Customs inspection
+        2 - crossroad 2
+        L - Large ferry
 
 Round 2:
 
@@ -55,21 +55,21 @@ Round 3:
    Hybrid cars don't have to be refilled with gas if they have more than 50% battery charge.
    Hybrid cars don't have to have the battery recharged if they have more than 50% of gas left.
 
-        A
-        |
-    G - 1 - S
-    |   |
-    C - 2 - L
-    |   |
-    B - 3 - E
+            A
+            |
+        G - 1 - S
+        |   |
+        C - 2 - L
+        |   |
+        B - 3 - E
 	
-A - Arrival
-G - Gas station
-1 - crossroad 1
-S - Small ferry
-C - Customs inspection
-2 - crossroad 2
-L - Large ferry
-B - Battery recharge station
-3 - crossroad 3
-E - Eco ferry
+        A - Arrival
+        G - Gas station
+        1 - crossroad 1
+        S - Small ferry
+        C - Customs inspection
+        2 - crossroad 2
+        L - Large ferry
+        B - Battery recharge station
+        3 - crossroad 3
+        E - Eco ferry
