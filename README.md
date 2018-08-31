@@ -1,7 +1,9 @@
 # Job interview: SOLID principles test
 A programming job interview questions that test the understanding of basic principles and patterns
 
-The test should be solved in 3 rounds, the text of each round given to the job applicant only after they solve the previous round.
+The test should be solved in 3 rounds, the text of each round given to the job applicant only after they solve the previous round. The purpose of these rounds is to check if the applicant can plan ahead and write extensible code before additional features are known.
+
+---
 
 Write an application (it can be a console / terminal application or an application with a GUI).
 Use the programming language of your choice.
@@ -12,6 +14,7 @@ Round 1:
 1. Design a ferry terminal. Two kinds of ferries are available at any time:
    - small ferry has space for 8 small vehicles (cars pay 3€ / vans pay 4€)
    - large ferry has space for 6 large vehicles (buses pay 5€ / trucks pay 6€)
+   
    The application must display all income made from tickets.
 2. Vehicles are constantly arriving to the terminal in random order.
    A terminal employee is paid to park them on the ferry - his salary is 10% of every ferry ticket.
