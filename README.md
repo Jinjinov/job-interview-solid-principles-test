@@ -51,7 +51,7 @@ Round 2:
    Every electric car arrives with a random battery charge.
    If the battery is below 10% then the terminal employee must recharge it.
    The application must display the battery charge for the current vehicle.
-8. Add a new eco ferry that carries 10 eco cars (electric cars pay 1€ / hybrid cars pay 2€)
+8. Add a new eco ferry that carries 10 eco cars (electric cars pay 1€ / hybrid cars pay 2€).
    Hybrid cars don't have to be refilled with gas if they have more than 50% battery charge.
    Hybrid cars don't have to have the battery recharged if they have more than 50% of gas left.
 
@@ -74,4 +74,4 @@ Round 2:
         3 - crossroad 3
         E - Eco ferry
 
-In the first round you were told to write modular and easily extensible code. It there anything you could have done differently in the first round that would make the last three tasks of the second round easier? If yes, what exactly?
+In the first round you were asked to write modular and easily extensible code. It there anything you could have done differently in the first round that would make the last three tasks of the second round easier? If yes, what exactly?
