@@ -1,7 +1,7 @@
 # Job interview: SOLID principles test
 A programming job interview questions that test the understanding of basic principles and patterns
 
-The test should be solved in 3 rounds, the text of each round given to the job applicant only after they solve the previous round. The purpose of these rounds is to check if the applicant can plan ahead and write extensible code before additional features are known.
+The test should be solved in two rounds, the text of the second round given to the job applicant only after they solve the first round. The purpose of these rounds is to check if the applicant can plan ahead and write extensible code before additional features are known.
 
 ---
 
