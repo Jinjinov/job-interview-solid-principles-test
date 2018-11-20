@@ -5,8 +5,7 @@ The test should be solved in two rounds, the text of the second round given to t
 
 ---
 
-Write an application (it can be a console / terminal application or an application with a GUI).
-Use the programming language of your choice.
+Use the programming language of your choice to write an application (it can be a console / terminal application or an application with a GUI).
 The code must be modular and easily extensible.
 After you complete the first 5 tasks you will receive 3 very short additional tasks to test if the code is really easily extensible.
 
