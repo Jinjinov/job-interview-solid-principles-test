@@ -14,8 +14,6 @@ namespace FerryTerminal
         Van,
         Electric,
         Hybrid,
-
-        Count
     }
 
     interface IVehicle

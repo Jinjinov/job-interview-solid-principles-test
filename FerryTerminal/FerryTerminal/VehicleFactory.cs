@@ -8,20 +8,20 @@ namespace FerryTerminal
 {
     class VehicleFactory
     {
-        static Random _random = new Random();
+        static readonly Random _random = new Random();
 
-        static Dictionary<VehicleType, Func<VehicleType, IVehicle>> _vehicleFactoryMethodList = new Dictionary<VehicleType, Func<VehicleType, IVehicle>>();
+        static readonly Dictionary<VehicleType, Func<VehicleType, IVehicle>> _vehicleFactoryMethodDict = new Dictionary<VehicleType, Func<VehicleType, IVehicle>>();
 
         public static void Register<T>(VehicleType vehicleType) where T : IVehicle, new()
         {
-            _vehicleFactoryMethodList.Add(vehicleType, (type) => new T() { VehicleType = type });
+            _vehicleFactoryMethodDict[vehicleType] = (type) => new T() { VehicleType = type };
         }
 
         public static IVehicle RandomVehicle()
         {
-            VehicleType vehicleType = (VehicleType)_random.Next((int)VehicleType.Count);
+            VehicleType vehicleType = _vehicleFactoryMethodDict.ElementAt(_random.Next(_vehicleFactoryMethodDict.Count)).Key;
 
-            return _vehicleFactoryMethodList[vehicleType](vehicleType);
+            return _vehicleFactoryMethodDict[vehicleType](vehicleType);
         }
     }
 }

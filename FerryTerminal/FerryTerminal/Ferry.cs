@@ -17,11 +17,11 @@ namespace FerryTerminal
     {
         public FerryType FerryType { get; private set; }
 
-        int _capacity;
+        readonly int _capacity;
 
-        IList<VehicleType> _acceptedVehicleTypeList;
+        readonly IList<VehicleType> _acceptedVehicleTypeList;
 
-        List<IVehicle> _vehicleList = new List<IVehicle>();
+        readonly List<IVehicle> _vehicleList = new List<IVehicle>();
 
         public Ferry(FerryType ferryType, int capacity, IList<VehicleType> acceptedVehicleTypeList)
         {

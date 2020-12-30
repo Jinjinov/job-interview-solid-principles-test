@@ -8,7 +8,7 @@ namespace FerryTerminal
 {
     class TerminalEmployee
     {
-        int _id;
+        readonly int _id;
 
         float _money;
 

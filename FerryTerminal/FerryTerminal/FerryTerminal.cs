@@ -16,13 +16,13 @@ namespace FerryTerminal
     {
         float _income = 0;
 
-        FerryTerminalLocation _ferryTerminalLocation;
+        readonly FerryTerminalLocation _ferryTerminalLocation;
 
-        IDictionary<VehicleType, float> _vehicleTicketPriceDictionary;
+        readonly IDictionary<VehicleType, float> _vehicleTicketPriceDictionary;
 
-        List<Ferry> _ferryList = new List<Ferry>();
+        readonly List<Ferry> _ferryList;
 
-        Queue<TerminalEmployee> _terminalEmployeeList = new Queue<TerminalEmployee>();
+        readonly Queue<TerminalEmployee> _terminalEmployeeQueue = new Queue<TerminalEmployee>();
 
         public FerryTerminal(FerryTerminalLocation ferryTerminalLocation, IDictionary<VehicleType, float> vehicleTicketPriceDictionary)
         {
@@ -30,12 +30,15 @@ namespace FerryTerminal
 
             _vehicleTicketPriceDictionary = vehicleTicketPriceDictionary;
 
-            _terminalEmployeeList.Enqueue(new TerminalEmployee(0, 0.1f));
-            _terminalEmployeeList.Enqueue(new TerminalEmployee(1, 0.11f));
+            _terminalEmployeeQueue.Enqueue(new TerminalEmployee(0, 0.1f));
+            _terminalEmployeeQueue.Enqueue(new TerminalEmployee(1, 0.11f));
 
-            _ferryList.Add(new Ferry(FerryType.Small, 8, new List<VehicleType> { VehicleType.Car, VehicleType.Van }));
-            _ferryList.Add(new Ferry(FerryType.Large, 6, new List<VehicleType> { VehicleType.Bus, VehicleType.Truck }));
-            _ferryList.Add(new Ferry(FerryType.Eco, 10, new List<VehicleType> { VehicleType.Electric, VehicleType.Hybrid }));
+            _ferryList = new List<Ferry>
+            {
+                new Ferry(FerryType.Small, 8, new List<VehicleType> { VehicleType.Car, VehicleType.Van }),
+                new Ferry(FerryType.Large, 6, new List<VehicleType> { VehicleType.Bus, VehicleType.Truck }),
+                new Ferry(FerryType.Eco, 10, new List<VehicleType> { VehicleType.Electric, VehicleType.Hybrid })
+            };
         }
 
         public void ProcessVehicle(IVehicle vehicle)
@@ -75,15 +78,15 @@ namespace FerryTerminal
 
             float amount = ticketPayer.GetMoney(price);
 
-            TerminalEmployee terminalEmployee = _terminalEmployeeList.Dequeue();
+            TerminalEmployee terminalEmployee = _terminalEmployeeQueue.Dequeue();
             float salary = amount * terminalEmployee.IncomePercent;
             terminalEmployee.AddMoney(salary);
             amount -= salary;
-            _terminalEmployeeList.Enqueue(terminalEmployee);
+            _terminalEmployeeQueue.Enqueue(terminalEmployee);
 
             _income += amount;
 
-            Console.WriteLine("Terminal income is now " + _income);
+            Console.WriteLine(_ferryTerminalLocation + " terminal income is now " + _income);
         }
 
         private void FillUpGas(IGasUser gasUser)

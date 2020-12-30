@@ -8,7 +8,7 @@ namespace FerryTerminal
 {
     class Vehicle : IVehicle, ITicketPayer
     {
-        static Random _random = new Random();
+        static readonly Random _random = new Random();
 
         public VehicleType VehicleType { get; set; }
 
