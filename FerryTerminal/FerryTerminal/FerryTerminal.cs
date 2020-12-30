@@ -130,14 +130,9 @@ namespace FerryTerminal
 
         private void LoadVehicleOnFerry(IVehicle vehicle)
         {
-            foreach (Ferry ferry in _ferryList)
-            {
-                if (ferry.AcceptVehicle(vehicle))
-                {
-                    Console.WriteLine("Vehicle location: " + ferry.FerryType + " ferry");
-                    break;
-                }
-            }
+            Ferry ferry = _ferryList.Where(f => f.AcceptVehicle(vehicle)).First();
+
+            Console.WriteLine("Vehicle location: " + ferry.FerryType + " ferry");
         }
     }
 }
