@@ -22,23 +22,17 @@ namespace FerryTerminal
 
         readonly List<Ferry> _ferryList;
 
-        readonly Queue<TerminalEmployee> _terminalEmployeeQueue = new Queue<TerminalEmployee>();
+        readonly Queue<TerminalEmployee> _terminalEmployeeQueue;
 
-        public FerryTerminal(FerryTerminalLocation ferryTerminalLocation, IDictionary<VehicleType, float> vehicleTicketPriceDictionary)
+        public FerryTerminal(FerryTerminalLocation ferryTerminalLocation, IDictionary<VehicleType, float> vehicleTicketPriceDictionary, List<Ferry> ferryList, List<TerminalEmployee> terminalEmployeeList)
         {
             _ferryTerminalLocation = ferryTerminalLocation;
 
             _vehicleTicketPriceDictionary = vehicleTicketPriceDictionary;
 
-            _terminalEmployeeQueue.Enqueue(new TerminalEmployee(0, 0.1f));
-            _terminalEmployeeQueue.Enqueue(new TerminalEmployee(1, 0.11f));
+            _ferryList = ferryList;
 
-            _ferryList = new List<Ferry>
-            {
-                new Ferry(FerryType.Small, 8, new List<VehicleType> { VehicleType.Car, VehicleType.Van }),
-                new Ferry(FerryType.Large, 6, new List<VehicleType> { VehicleType.Bus, VehicleType.Truck }),
-                new Ferry(FerryType.Eco, 10, new List<VehicleType> { VehicleType.Electric, VehicleType.Hybrid })
-            };
+            _terminalEmployeeQueue = new Queue<TerminalEmployee>(terminalEmployeeList);
         }
 
         public void ProcessVehicle(IVehicle vehicle)
