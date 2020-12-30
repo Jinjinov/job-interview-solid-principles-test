@@ -20,6 +20,6 @@ namespace FerryTerminal
 
     interface IVehicle
     {
-        VehicleType VehicleType { get; }
+        VehicleType VehicleType { get; set; }
     }
 }

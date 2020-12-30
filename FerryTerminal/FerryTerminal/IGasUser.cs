@@ -10,6 +10,6 @@ namespace FerryTerminal
     {
         int GasPercent { get; set; }
 
-        bool NeedsRefill();
+        bool NeedsRefill { get; }
     }
 }

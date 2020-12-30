@@ -8,14 +8,14 @@ namespace FerryTerminal
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
-            VehicleFactory.Register(VehicleType.Bus, GasVehicle.GetNewInstance);
-            VehicleFactory.Register(VehicleType.Car, GasVehicle.GetNewInstance);
-            VehicleFactory.Register(VehicleType.Truck, CargoVehicle.GetNewInstance);
-            VehicleFactory.Register(VehicleType.Van, CargoVehicle.GetNewInstance);
-            VehicleFactory.Register(VehicleType.Electric, ElectricVehicle.GetNewInstance);
-            VehicleFactory.Register(VehicleType.Hybrid, HybridVehicle.GetNewInstance);
+            VehicleFactory.Register<GasVehicle>(VehicleType.Bus);
+            VehicleFactory.Register<GasVehicle>(VehicleType.Car);
+            VehicleFactory.Register<CargoVehicle>(VehicleType.Truck);
+            VehicleFactory.Register<CargoVehicle>(VehicleType.Van);
+            VehicleFactory.Register<ElectricVehicle>(VehicleType.Electric);
+            VehicleFactory.Register<HybridVehicle>(VehicleType.Hybrid);
 
             List<FerryTerminal> ferryTerminalList = new List<FerryTerminal>
             {

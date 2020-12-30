@@ -10,6 +10,6 @@ namespace FerryTerminal
     {
         int BatteryPercent { get; set; }
 
-        bool NeedsRecharge();
+        bool NeedsRecharge { get; }
     }
 }

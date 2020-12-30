@@ -8,7 +8,7 @@ namespace FerryTerminal
 {
     interface ITicketPayer
     {
-        VehicleType GetTicketType();
+        VehicleType TicketType { get; }
 
         float GetMoney(float amount);
     }

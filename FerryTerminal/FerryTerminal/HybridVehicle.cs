@@ -8,30 +8,12 @@ namespace FerryTerminal
 {
     class HybridVehicle : Vehicle, IElectricUser, IGasUser
     {
-        public int BatteryPercent { get; set; }
+        public int BatteryPercent { get; set; } = RandomPercent();
 
-        public int GasPercent { get; set; }
+        public int GasPercent { get; set; } = RandomPercent();
 
-        public HybridVehicle(VehicleType vehicleType) : base(vehicleType)
-        {
-            BatteryPercent = RandomPercent();
+        public bool NeedsRecharge => BatteryPercent <= 10 && GasPercent <= 50;
 
-            GasPercent = RandomPercent();
-        }
-
-        public static HybridVehicle GetNewInstance(VehicleType vehicleType)
-        {
-            return new HybridVehicle(vehicleType);
-        }
-
-        public bool NeedsRecharge()
-        {
-            return BatteryPercent <= 10 && GasPercent <= 50;
-        }
-
-        public bool NeedsRefill()
-        {
-            return GasPercent <= 10 && BatteryPercent <= 50;
-        }
+        public bool NeedsRefill => GasPercent <= 10 && BatteryPercent <= 50;
     }
 }

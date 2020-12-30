@@ -8,21 +8,8 @@ namespace FerryTerminal
 {
     class ElectricVehicle : Vehicle, IElectricUser
     {
-        public int BatteryPercent { get; set; }
+        public int BatteryPercent { get; set; } = RandomPercent();
 
-        public ElectricVehicle(VehicleType vehicleType) : base(vehicleType)
-        {
-            BatteryPercent = RandomPercent();
-        }
-
-        public static ElectricVehicle GetNewInstance(VehicleType vehicleType)
-        {
-            return new ElectricVehicle(vehicleType);
-        }
-
-        public bool NeedsRecharge()
-        {
-            return BatteryPercent <= 10;
-        }
+        public bool NeedsRecharge => BatteryPercent <= 10;
     }
 }

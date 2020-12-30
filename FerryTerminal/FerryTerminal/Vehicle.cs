@@ -10,23 +10,15 @@ namespace FerryTerminal
     {
         static Random _random = new Random();
 
-        public VehicleType VehicleType { get; private set; }
+        public VehicleType VehicleType { get; set; }
+
+        public VehicleType TicketType => VehicleType;
 
         float _money = 100;
-
-        public Vehicle(VehicleType vehicleType)
-        {
-            VehicleType = vehicleType;
-        }
 
         public static int RandomPercent()
         {
             return _random.Next(101);
-        }
-
-        public VehicleType GetTicketType()
-        {
-            return VehicleType;
         }
 
         public float GetMoney(float amount)

@@ -42,24 +42,24 @@ namespace FerryTerminal
         {
             Console.WriteLine("Vehicle location: Arrival");
 
-            if (vehicle is ITicketPayer)
+            if (vehicle is ITicketPayer ticketPayer)
             {
-                ChargeTicket(vehicle as ITicketPayer);
+                ChargeTicket(ticketPayer);
             }
 
-            if (vehicle is IGasUser)
+            if (vehicle is IGasUser gasUser)
             {
-                FillUpGas(vehicle as IGasUser);
+                FillUpGas(gasUser);
             }
 
-            if (vehicle is IElectricUser)
+            if (vehicle is IElectricUser electricUser)
             {
-                FillUpBattery(vehicle as IElectricUser);
+                FillUpBattery(electricUser);
             }
 
-            if (vehicle is ICargoCarrier)
+            if (vehicle is ICargoCarrier cargoCarrier)
             {
-                CustomsInspection(vehicle as ICargoCarrier);
+                CustomsInspection(cargoCarrier);
             }
 
             LoadVehicleOnFerry(vehicle);
@@ -69,9 +69,9 @@ namespace FerryTerminal
 
         private void ChargeTicket(ITicketPayer ticketPayer)
         {
-            Console.WriteLine("Charging ticket for " + ticketPayer.GetTicketType());
+            Console.WriteLine("Charging ticket for " + ticketPayer.TicketType);
 
-            float price = _vehicleTicketPriceDictionary[ticketPayer.GetTicketType()];
+            float price = _vehicleTicketPriceDictionary[ticketPayer.TicketType];
 
             float amount = ticketPayer.GetMoney(price);
 
@@ -90,7 +90,7 @@ namespace FerryTerminal
         {
             Console.WriteLine("Amount of gas " + gasUser.GasPercent);
 
-            if (gasUser.NeedsRefill())
+            if (gasUser.NeedsRefill)
             {
                 gasUser.GasPercent = 100;
 
@@ -102,7 +102,7 @@ namespace FerryTerminal
         {
             Console.WriteLine("Amount of battery " + electricUser.BatteryPercent);
 
-            if (electricUser.NeedsRecharge())
+            if (electricUser.NeedsRecharge)
             {
                 electricUser.BatteryPercent = 100;
 

@@ -12,9 +12,9 @@ namespace FerryTerminal
 
         static Dictionary<VehicleType, Func<VehicleType, IVehicle>> _vehicleFactoryMethodList = new Dictionary<VehicleType, Func<VehicleType, IVehicle>>();
 
-        public static void Register(VehicleType vehicleType, Func<VehicleType, IVehicle> newInstanceFunc)
+        public static void Register<T>(VehicleType vehicleType) where T : IVehicle, new()
         {
-            _vehicleFactoryMethodList.Add(vehicleType, newInstanceFunc);
+            _vehicleFactoryMethodList.Add(vehicleType, (type) => new T() { VehicleType = type });
         }
 
         public static IVehicle RandomVehicle()

@@ -8,21 +8,8 @@ namespace FerryTerminal
 {
     class GasVehicle : Vehicle, IGasUser
     {
-        public int GasPercent { get; set; }
+        public int GasPercent { get; set; } = RandomPercent();
 
-        public GasVehicle(VehicleType vehicleType) : base(vehicleType)
-        {
-            GasPercent = RandomPercent();
-        }
-
-        public static GasVehicle GetNewInstance(VehicleType vehicleType)
-        {
-            return new GasVehicle(vehicleType);
-        }
-
-        public bool NeedsRefill()
-        {
-            return GasPercent <= 10;
-        }
+        public bool NeedsRefill => GasPercent <= 10;
     }
 }
