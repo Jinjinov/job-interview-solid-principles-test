@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FerryTerminal
 {
@@ -14,112 +13,33 @@ namespace FerryTerminal
 
     class FerryTerminal
     {
-        float _income = 0;
-
         readonly FerryTerminalLocation _ferryTerminalLocation;
-
-        readonly IDictionary<VehicleType, float> _vehicleTicketPriceDictionary;
 
         readonly List<Ferry> _ferryList;
 
-        readonly Queue<TerminalEmployee> _terminalEmployeeQueue;
+        readonly List<ILocation> _locationList;
 
-        public FerryTerminal(FerryTerminalLocation ferryTerminalLocation, IDictionary<VehicleType, float> vehicleTicketPriceDictionary, List<Ferry> ferryList, List<TerminalEmployee> terminalEmployeeList)
+        public FerryTerminal(FerryTerminalLocation ferryTerminalLocation, List<Ferry> ferryList, List<ILocation> locationList)
         {
             _ferryTerminalLocation = ferryTerminalLocation;
 
-            _vehicleTicketPriceDictionary = vehicleTicketPriceDictionary;
-
             _ferryList = ferryList;
 
-            _terminalEmployeeQueue = new Queue<TerminalEmployee>(terminalEmployeeList);
+            _locationList = locationList;
         }
 
         public void ProcessVehicle(IVehicle vehicle)
         {
-            Console.WriteLine("Vehicle location: Arrival");
+            Console.WriteLine("Vehicle location: Arrival at " + _ferryTerminalLocation + " ferry terminal");
 
-            if (vehicle is ITicketPayer ticketPayer)
+            foreach (ILocation location in _locationList)
             {
-                ChargeTicket(ticketPayer);
-            }
-
-            if (vehicle is IGasUser gasUser)
-            {
-                FillUpGas(gasUser);
-            }
-
-            if (vehicle is IElectricUser electricUser)
-            {
-                FillUpBattery(electricUser);
-            }
-
-            if (vehicle is ICargoCarrier cargoCarrier)
-            {
-                CustomsInspection(cargoCarrier);
+                location.ProcessVehicle(vehicle);
             }
 
             LoadVehicleOnFerry(vehicle);
 
             Console.WriteLine();
-        }
-
-        private void ChargeTicket(ITicketPayer ticketPayer)
-        {
-            Console.WriteLine("Charging ticket for " + ticketPayer.TicketType);
-
-            float price = _vehicleTicketPriceDictionary[ticketPayer.TicketType];
-
-            float amount = ticketPayer.GetMoney(price);
-
-            TerminalEmployee terminalEmployee = _terminalEmployeeQueue.Dequeue();
-            float salary = amount * terminalEmployee.IncomePercent;
-            terminalEmployee.AddMoney(salary);
-            amount -= salary;
-            _terminalEmployeeQueue.Enqueue(terminalEmployee);
-
-            _income += amount;
-
-            Console.WriteLine(_ferryTerminalLocation + " terminal income is now " + _income);
-        }
-
-        private void FillUpGas(IGasUser gasUser)
-        {
-            Console.WriteLine("Amount of gas " + gasUser.GasPercent);
-
-            if (gasUser.NeedsRefill)
-            {
-                gasUser.GasPercent = 100;
-
-                Console.WriteLine("Vehicle location: Gas station");
-            }
-        }
-
-        private void FillUpBattery(IElectricUser electricUser)
-        {
-            Console.WriteLine("Amount of battery " + electricUser.BatteryPercent);
-
-            if (electricUser.NeedsRecharge)
-            {
-                electricUser.BatteryPercent = 100;
-
-                Console.WriteLine("Vehicle location: Battery recharge station");
-            }
-        }
-
-        private void CustomsInspection(ICargoCarrier cargoCarrier)
-        {
-            Console.WriteLine("Vehicle location: Customs inspection");
-
-            Console.WriteLine("Cargo doors are open: " + cargoCarrier.CargoDoorOpen);
-
-            cargoCarrier.CargoDoorOpen = true;
-
-            Console.WriteLine("Cargo doors are open: " + cargoCarrier.CargoDoorOpen);
-
-            cargoCarrier.CargoDoorOpen = false;
-
-            Console.WriteLine("Cargo doors are open: " + cargoCarrier.CargoDoorOpen);
         }
 
         private void LoadVehicleOnFerry(IVehicle vehicle)
