@@ -5,15 +5,15 @@ The test should be solved in two rounds, the text of the second round given to t
 
 ---
 
-Use the programming language of your choice to write an application (it can be a console / terminal application or an application with a GUI).
+Use the programming language of your choice to write a console application that simulates a ferry terminal.
 The code must be modular and easily extensible.
 After you complete the first 5 tasks you will receive 3 very short additional tasks to test if the code is really easily extensible.
 
 Round 1:
 
-1. Design a ferry terminal. Two kinds of ferries are available at any time:
-   - small ferry has space for 8 small vehicles (cars pay 3€ / vans pay 4€)
-   - large ferry has space for 6 large vehicles (buses pay 5€ / trucks pay 6€)
+1. Two kinds of ferries are available at any time:
+   - small ferry has space for 8 small vehicles (cars pay 3€ / vans pay 4€).
+   - large ferry has space for 6 large vehicles (buses pay 5€ / trucks pay 6€).
    
    The application must display all income made from tickets.
 2. Vehicles are constantly arriving to the terminal in random order.
